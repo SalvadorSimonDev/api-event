@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Esta línea especifica la versión de XML utilizada y la codificación del archivo. -->
+
+ <!-- Establece la raíz del documento XML y define los espacios de nombres utilizados. 
+ También establece la ubicación del esquema XML que se utilizará para validar el archivo POM (Project Object Model). -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+ <!-- Especifica la versión del modelo POM. En este caso, se está utilizando la versión 4.0.0. -->
+	<modelVersion>4.0.0</modelVersion>
+
+
+	 <!-- Define el proyecto principal del cual este proyecto hereda configuraciones. -->
+	<parent>
+		<!-- Identifica el grupo del proyecto padre. -->
+		<groupId>org.springframework.boot</groupId>
+		<!-- Identifica el artefacto del proyecto padre. -->
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<!-- Especifica la versión del proyecto padre. -->
+		<version>3.2.0</version>
+		 <!-- Indica que la configuración del proyecto padre 
+		 se obtiene directamente de los repositorios remotos. -->
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<!-- Identifica el grupo al que pertenece este proyecto. -->
+	<groupId>com.smartinez.springcloud.msvc</groupId>
+	<!-- Identifica el nombre del artefacto (nombre del proyecto). -->
+	<artifactId>app-event</artifactId>
+	<!-- Especifica la versión del proyecto. -->
+	<version>0.0.1-SNAPSHOT</version>
+	<!-- Especifica el nombre del proyecto. -->
+	<name>app-event</name>
+	 <!-- Define el tipo de empaquetado utilizado para el proyecto. 
+	 En este caso, es un POM (Project Object Model) sin código fuente. -->
+	<packaging>pom</packaging>
+
+	<!-- Proporciona una descripción del proyecto. -->
+	<description>Demo project for Spring Boot</description>
+	<!-- Define propiedades del proyecto. -->
+	<properties>
+		<!-- Especifica la versión de Java utilizada en el proyecto. -->
+		<java.version>21</java.version>
+	</properties>
+
+	<!-- Enumera las dependencias del proyecto. -->
+	<dependencies>
+		<!-- Define una dependencia del proyecto. -->
+		<dependency>
+			<!-- Identifican el grupo y el artefacto de la dependencia. -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<!-- Especifica el alcance de la dependencia. En este caso, la dependencia solo se aplica en el ámbito de pruebas. -->
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Define la configuración de construcción del proyecto. -->
+	<build>
+		<!-- Enumera los plugins utilizados en la construcción del proyecto. -->
+		<plugins>
+			 <!-- Define un plugin en particular. -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- Configura opciones específicas para el plugin. -->
+				<configuration>
+					<!-- Configura la generación de imágenes Docker para la aplicación Spring Boot. -->
+					<image>
+						<!-- Especifica la imagen de Docker utilizada para construir la aplicación. -->
+						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
+					</image>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
